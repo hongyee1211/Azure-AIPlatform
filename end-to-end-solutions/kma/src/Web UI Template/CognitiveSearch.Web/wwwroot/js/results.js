@@ -168,21 +168,25 @@ function UpdateResults(data, q) {
                 resultsHtml += `<div id="resultdiv${i}" class="${classList}">
                                     <div class="search-result">
                                         <div class="card mt-3 documentSearchCard">
-                                            <span class="card-header documentSearchCardHeader" onclick="ShowDocument('${id}');">
-                                                <div class="documentSearchDocName">
-                                                    <i class="html-icon ms-Icon ${icon}"></i>${name}
-                                                </div>
-                                                <div class="documentSearchDocDownloadBtn">
-                                                    <a href="${path}"><div class="documentSearchDocDownloadBtnFiller">Download</div></a>
+                                            <span class="card-header documentSearchCardHeader">
+                                                <div class="documentSearchDocName flex">
+                                                    <div class="donut-chart active" style="margin-right:20px;">
+                                                      <svg viewBox="0 0 32 32">
+                                                        <circle r="16" cx="16" cy="16" />
+                                                      </svg>
+                                                      <div class="donut-center">
+                                                        <div class="text-position">75%</div>
+                                                      </div>
+                                                    </div>
+                                                    <div onclick="ShowDocument('${id}');" class="pointer-cursor">
+                                                        ${name}<i class="html-icon ms-Icon ${icon}"></i>
+                                                    </div>
                                                 </div>
                                             </span>
                                             <div class="card-body documentSearchCardBody">
                                                 <p>${highlightedSummary}</p>
                                             </div>
-                                            <div class="card-footer documentSearchCardFooter">
-                                                <img src="/images/${buttonIcon}" height="30px" onclick="ShowHideTags(${i});" class="documentSearchCardFooterExpandBtn">
-                                                <div id="tagdiv${i}" class="tag-container" style="margin-top:10px;display:${result.tagDisplay}">${tags}</div>
-                                            </div>
+                                            <div class="tag-container" style="padding: 0.75rem 1.25rem; border-top: 1px solid rgba(0, 0, 0, 0.125);">${tags}</div>
                                         </div>
                                     </div>
                                 </div>`;
@@ -447,14 +451,14 @@ function UpdateWidgetResults(data, q) {
             });
         }
 
-        $("#searchResults #doc-details-div").attr('class', 'col-7');
+        $("#searchResults #doc-details-div").attr('class', 'col-6');
         $("#doc-widgets").css("display", "block");
-        $("#doc-widgets").attr('class', 'col-4 doc-widgets-fadeIn');
+        $("#doc-widgets").attr('class', 'col-6 doc-widgets-fadeIn');
         $("#doc-widgets").html(resultsHtml);
     } else {
         $("#searchResults #doc-details-div").attr('class', 'col-12');
         $("#doc-widgets").css("display", "none");
-        $("#doc-widgets").attr('class', 'col-4');
+        $("#doc-widgets").attr('class', 'col-6');
         $("#doc-widgets").html("");
     }
 
